@@ -1,0 +1,10 @@
+STUDENT MARKS REPORT
+====================
+Number of students: 3
+Average mark: 85.00
+Top student: Mina (98)
+
+INDIVIDUAL RESULTS
+Asha: 85 - Grade B
+Ravi: 72 - Grade C
+Mina: 98 - Grade A
