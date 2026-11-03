@@ -1,1 +1,1 @@
-# Dependencies will be listed after reviewing the supplied Python script.
+# No third-party dependencies. The project uses Python's standard library only.
