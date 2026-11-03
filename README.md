@@ -1,49 +1,89 @@
-# Python Debugging and Troubleshooting
+# Week 2 - Python Debugging and Troubleshooting
 
-A Python project for reviewing an existing script, reproducing its problems, correcting the underlying causes, and recording the debugging process.
+## Project: Student Marks Report
 
-## Project status
+This project demonstrates a debugging exercise using a small Python program that reads student marks from a CSV file and creates a text report.
 
-The repository is set up for the Week 2 task. The original Python script has not yet been provided, so the bug report, corrected script, and final debugging log will be completed after the original file is available. No bugs or test results are being assumed in advance.
+### Why this project uses a self-created starter script
 
-## Planned folder structure
+No starter Python script was supplied with the internship task. To complete the exercise without claiming that an external script was provided, a sample program was created for this project. The file in original_script contains deliberate, reproducible defects. The corrected version is in corrected_script, and the investigation is recorded in documentation/DEBUGGING_LOG.md.
 
-```text
-python-debugging-troubleshooting/
-├── original_script/
-│   └── (original script supplied for the task)
-├── corrected_script/
-│   └── (corrected version after debugging)
-├── documentation/
-│   └── DEBUGGING_LOG.md
-├── tests/
-│   └── (tests based on the actual script)
-├── README.md
-├── requirements.txt
-└── .gitignore
-```
+The original script is kept unchanged so that its behaviour can be compared with the corrected program.
 
-The folder and file names may be adjusted if the supplied script needs related files, sample input, or other dependencies.
+## Project structure
 
-## Work plan
+    python-debugging-troubleshooting/
+    ├── original_script/
+    │   ├── __init__.py
+    │   └── grade_report.py
+    ├── corrected_script/
+    │   ├── __init__.py
+    │   └── grade_report.py
+    ├── documentation/
+    │   └── DEBUGGING_LOG.md
+    ├── tests/
+    │   ├── __init__.py
+    │   └── test_grade_report.py
+    ├── sample_data/
+    │   ├── marks.csv
+    │   └── expected_report.txt
+    ├── README.md
+    ├── requirements.txt
+    └── .gitignore
 
-1. Review the supplied script and understand its intended behaviour.
-2. Run it with normal and edge-case inputs to establish a baseline.
-3. Record each reproducible issue, including the input, observed behaviour, expected behaviour, and relevant error message.
-4. Trace the issue to its cause using appropriate tools. Python's built-in debugger (`pdb`) may be used where line-by-line inspection is useful.
-5. Make focused corrections and explain why each change is needed.
-6. Add tests that cover the original failures and normal use cases.
-7. Run the tests and record the actual results.
-8. Review the final code for readability and maintainability without changing its intended behaviour.
+## What the program does
 
-## Running the project
+The corrected program reads a CSV file with two columns, Name and Marks. It validates the records, calculates the average, identifies the student with the highest mark, assigns a grade to each student, and writes a text report.
 
-Run instructions and dependencies will be added after the original script is reviewed. The final steps will depend on the supplied program and its required packages.
+For this exercise, the grade bands are A = 90-100, B = 75-89, C = 60-74, D = 40-59, and F = 0-39. These bands are project assumptions used to make the example testable; they were not supplied as part of the internship instructions.
 
-## Final deliverables
+## Requirements
 
-- Original script retained for comparison.
-- Corrected Python script.
-- A debugging log explaining the reproduced issues, root causes, fixes, and verification.
-- Tests or clear manual test instructions.
-- A self-contained ZIP archive containing the final files.
+- Python 3.10 or newer
+- No third-party packages are required
+
+Check the installed version with:
+
+    python --version
+
+## Run the corrected application
+
+From the root folder of the project, run:
+
+    python corrected_script/grade_report.py sample_data/marks.csv report.txt
+
+The program prints a confirmation and writes report.txt in the current folder. Input and output paths can be changed:
+
+    python corrected_script/grade_report.py path/to/marks.csv path/to/report.txt
+
+The input CSV must have this header and data format:
+
+    Name,Marks
+    Asha,85
+    Ravi,72
+    Mina,98
+
+The corrected program reports missing files, invalid headers, malformed rows, non-numeric marks, marks outside 0-100, and files with no student records. It does not silently ignore invalid student records.
+
+## Run the tests
+
+From the root folder:
+
+    python -m unittest discover -s tests -v
+
+The tests use temporary files and do not modify sample_data/marks.csv.
+
+## Debugging log
+
+The detailed bug report, reproduction steps, error messages, root causes, before-and-after code examples, use of pdb, fixes, and test results are in documentation/DEBUGGING_LOG.md.
+
+## Deliverables
+
+- original_script/grade_report.py: the deliberately faulty starter program created for this exercise.
+- corrected_script/grade_report.py: the corrected program.
+- documentation/DEBUGGING_LOG.md: the debugging record.
+- tests/: automated regression and validation tests.
+- sample_data/marks.csv: sample input file.
+- sample_data/expected_report.txt: expected output for the sample data.
+
+The original script is included for comparison and should not be used as the final application. Run the corrected script for normal use.
